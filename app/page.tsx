@@ -1,16 +1,47 @@
-import Hero from "@/components/hero";
-import ConnectSupabaseSteps from "@/components/tutorial/connect-supabase-steps";
-import SignUpUserSteps from "@/components/tutorial/sign-up-user-steps";
-import { hasEnvVars } from "@/utils/supabase/check-env-vars";
+import Button from "@/components/button";
+import SubledditItem from "./subleddit-item";
+
+const sampleSubledditData = {
+  name: "college"
+}
 
 export default async function Index() {
   return (
     <>
-      <Hero />
-      <main className="flex-1 flex flex-col gap-6 px-4">
-        <h2 className="font-medium text-xl mb-4">Next steps</h2>
-        {hasEnvVars ? <SignUpUserSteps /> : <ConnectSupabaseSteps />}
-      </main>
+      <div className="mb-2">
+        <div className="text-sm">
+          hi @bob
+        </div>
+      </div>
+
+      <div>
+        <div className="flex">
+          <h1 className="text-3xl flex-1 mb-8">
+            my communities
+          </h1>
+          <div>
+            <Button text="create new +" />
+          </div>
+        </div>
+        <div className="flex flex-col gap-2">
+          <SubledditItem subleddit={sampleSubledditData} />
+          <SubledditItem subleddit={sampleSubledditData} />
+          <SubledditItem subleddit={sampleSubledditData} />
+          <SubledditItem subleddit={sampleSubledditData} />
+        </div>
+      </div>
+
+      <div className="mt-24">
+        <h1 className="text-3xl flex-1 mb-8">
+          more communities to join
+        </h1>
+      </div>
+      <div className="flex flex-col gap-2">
+        <SubledditItem subleddit={sampleSubledditData} />
+        <SubledditItem subleddit={sampleSubledditData} />
+        <SubledditItem subleddit={sampleSubledditData} />
+        <SubledditItem subleddit={sampleSubledditData} />
+      </div>
     </>
   );
 }
