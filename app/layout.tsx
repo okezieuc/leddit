@@ -7,6 +7,7 @@ import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "next-themes";
 import Link from "next/link";
 import "./globals.css";
+import SubledditItem from "./subleddit-item";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -17,6 +18,11 @@ export const metadata = {
   title: "Next.js and Supabase Starter Kit",
   description: "The fastest way to build apps with Next.js and Supabase",
 };
+
+const sampleSubledditData = {
+  name: "college"
+}
+
 
 export default function RootLayout({
   children,
@@ -53,9 +59,16 @@ export default function RootLayout({
                   </div>
                 </div>
                 <div className="basis-1/4 min-h-screen bg-gray-300 p-12">
-                  <h2 className="font-semibold">
+                  <h2 className="font-semibold mb-8">
                     other leddits
                   </h2>
+                  <div className="flex flex-col gap-2">
+                    <SubledditItem subleddit={sampleSubledditData} />
+                    <SubledditItem subleddit={sampleSubledditData} />
+                    <SubledditItem subleddit={sampleSubledditData} />
+                    <SubledditItem subleddit={sampleSubledditData} />
+                    <SubledditItem subleddit={sampleSubledditData} />
+                  </div>
                 </div>
               </div>
             </div>
