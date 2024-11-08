@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PostComment from "./post-comment";
+import PostReplyButton from "./post-reply-button";
 
 const sampleCommentData = {
     body: "this is a sample body of a comment. it could span multiple lines or it could be short. it should ideally be able to contain links, but right now, that is not supported.",
@@ -26,6 +27,7 @@ export default async function Page({ params }: { params: Promise<{ subleddit: st
             <p className="mt-4">
                 this is a sample post body.
             </p>
+            <PostReplyButton />
         </div>
 
 
