@@ -1,15 +1,18 @@
 import PostListItem from "./post-list-item";
 
 const samplePostData = {
-    title: "i can't find the swimming pool in cravath hall",
-    body: "i applied here because one of the tour guides had mentioned that there is an olympic sized swimming pool in cravath hall, but i cant find it",
+    title: "this is a sample, possibly mutli line post title for a leddit post",
+    body: "this is a sample body of a post. it could span multiple lines or it could be short. it should ideally be able to contain links, but right now, that is not supported.",
+    slug: "test",
 }
 
-export default function Page() {
+export default async function Page({ params }: { params: Promise<{ subleddit: string }> }) {
+    const { subleddit } = await params;
+
     return <div>
         <div className="mb-16">
             <h1 className="text-3xl mb-4">
-                l/fisk
+                l/{subleddit}
             </h1>
             <p>
                 everything fisk.
@@ -17,14 +20,12 @@ export default function Page() {
         </div>
 
         <div className="grid grid-cols-1 divide-y divide-black">
-            <PostListItem post={samplePostData}  />
-            <PostListItem post={samplePostData}  />
-            <PostListItem post={samplePostData}  />
-            <PostListItem post={samplePostData}  />
-            <PostListItem post={samplePostData}  />
-            <PostListItem post={samplePostData}  />
-            <PostListItem post={samplePostData}  />
-            <PostListItem post={samplePostData}  />
+            <PostListItem post={samplePostData} subleddit={subleddit} />
+            <PostListItem post={samplePostData} subleddit={subleddit} />
+            <PostListItem post={samplePostData} subleddit={subleddit} />
+            <PostListItem post={samplePostData} subleddit={subleddit} />
+            <PostListItem post={samplePostData} subleddit={subleddit} />
+            <PostListItem post={samplePostData} subleddit={subleddit} />
         </div>
     </div>;
 }

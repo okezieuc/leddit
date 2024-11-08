@@ -59,7 +59,8 @@ export default function RootLayout({
                   </div>
                 </div>
                 <div className="basis-1/4 min-h-screen bg-gray-300 p-12">
-                  <h2 className="font-semibold mb-8">
+                  <Link href="/" className="mb-12 text-red-900 font-bold">home</Link>
+                  <h2 className="font-semibold mb-8 mt-12">
                     other leddits
                   </h2>
                   <div className="flex flex-col gap-2">

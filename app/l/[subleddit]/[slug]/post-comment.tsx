@@ -9,7 +9,7 @@ export default function PostComment({ comment }: { comment: Comment }) {
             <div>
                 u/{comment.author}
             </div>
-            <div className="truncate">
+            <div>
                 {comment.body}
             </div>
         </div>

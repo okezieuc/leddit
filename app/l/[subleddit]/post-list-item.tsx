@@ -1,15 +1,18 @@
+import Link from "next/link";
+
 type Post = {
     title: string;
     body: string;
     author?: string;
+    slug: string;
 }
 
-export default function PostListItem({ post }: { post: Post }) {
+export default function PostListItem({ post, subleddit }: { post: Post, subleddit: string }) {
     return <>
         <div className="py-6">
-            <div>
+            <Link href={`/l/${subleddit}/${post.slug}`}>
                 {post.title}
-            </div>
+            </Link>
             <div className="truncate">
                 {post.body}
             </div>

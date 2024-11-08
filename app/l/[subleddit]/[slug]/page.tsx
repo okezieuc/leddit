@@ -1,19 +1,22 @@
+import Link from "next/link";
 import PostComment from "./post-comment";
 
 const sampleCommentData = {
-    body: "i thought i was the only one wondering this. i already bought my swimming gear back in atlanta.",
+    body: "this is a sample body of a comment. it could span multiple lines or it could be short. it should ideally be able to contain links, but right now, that is not supported.",
     author: "alice"
 }
 
-export default function Page() {
+export default async function Page({ params }: { params: Promise<{ subleddit: string, slug: string }> }) {
+    const { subleddit, slug } = await params;
+
     return <div>
         <div className="mb-16">
             <div className="flex flex-col gap-2">
-                <div className="text-sm">
-                    l/fisk
-                </div>
+                <Link className="text-sm" href={`/l/${subleddit}`}>
+                    l/{subleddit}
+                </Link>
                 <h1 className="text-3xl">
-                    i cannot find the swimming pool they said we had in cravath hall
+                    this is a sample, possibly mutli line post title for a leddit post
                 </h1>
                 <div className="text-sm mb-4">
                     u/bob
@@ -21,7 +24,7 @@ export default function Page() {
             </div>
 
             <p className="mt-4">
-                i am frustrated fr. i like my dorm room tho
+                this is a sample post body.
             </p>
         </div>
 

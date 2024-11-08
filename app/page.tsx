@@ -1,5 +1,5 @@
-import Button from "@/components/button";
 import SubledditItem from "./subleddit-item";
+import LinkButton from "@/components/linkbutton";
 
 const sampleSubledditData = {
   name: "college"
@@ -20,7 +20,7 @@ export default async function Index() {
             my communities
           </h1>
           <div>
-            <Button text="create new +" />
+            <LinkButton text="create new +" href="l/new" />
           </div>
         </div>
         <div className="flex flex-col gap-2">

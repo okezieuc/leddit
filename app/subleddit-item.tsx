@@ -1,9 +1,11 @@
+import Link from "next/link";
+
 type Subleddit = {
     name: string;
 }
 
 export default function SubledditItem({ subleddit }: { subleddit: Subleddit }) {
     return <div>
-        l/{subleddit.name}
+        <Link href={`/l/${subleddit.name}`}>l/{subleddit.name}</Link>
     </div>
 }
