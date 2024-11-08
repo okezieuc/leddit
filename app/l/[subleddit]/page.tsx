@@ -1,3 +1,4 @@
+import LinkButton from "@/components/linkbutton";
 import PostListItem from "./post-list-item";
 
 const samplePostData = {
@@ -10,13 +11,20 @@ export default async function Page({ params }: { params: Promise<{ subleddit: st
     const { subleddit } = await params;
 
     return <div>
-        <div className="mb-16">
-            <h1 className="text-3xl mb-4">
-                l/{subleddit}
-            </h1>
-            <p>
-                everything fisk.
-            </p>
+        <div className="mb-16 flex">
+            <div className="flex-1">
+                <h1 className="text-3xl mb-4">
+                    l/{subleddit}
+                </h1>
+                <p>
+                    everything fisk.
+                </p>
+            </div>
+            <div>
+                <div>
+                    <LinkButton text="create post +" href={`/l/${subleddit}/new`} />
+                </div>
+            </div>
         </div>
 
         <div className="grid grid-cols-1 divide-y divide-black">
