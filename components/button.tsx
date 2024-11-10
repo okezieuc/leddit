@@ -5,7 +5,7 @@ interface ButtonProps extends SelectHTMLAttributes<HTMLButtonElement> {
 }
 
 
-export default function ButtonProps(props: ButtonProps) {
+export default function Button(props: ButtonProps) {
     return <button className="bg-black text-white text-sm px-6 py-2 hover:bg-slate-800 transition" {...props}>
         {props.text}
     </button>
