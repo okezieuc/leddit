@@ -9,7 +9,7 @@ export default async function Signup(props: {
 }) {
   const searchParams = await props.searchParams;
 
-  return <form className="">
+  return <form className="" action={signUpAction}>
     <div className="mb-16">
       <h1 className="text-3xl mb-2">
         welcome to leddit
@@ -36,7 +36,7 @@ export default async function Signup(props: {
       <div className="w-full">
         <div className="mb-2">username</div>
         <TextInput
-          name="email"
+          name="username"
           placeholder="@you"
           required
         />

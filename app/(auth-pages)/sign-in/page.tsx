@@ -1,3 +1,4 @@
+import { signInAction } from "@/app/actions";
 import Button from "@/components/button";
 import { FormMessage, Message } from "@/components/form-message";
 import TextInput from "@/components/ui/textinput";
@@ -6,7 +7,7 @@ import Link from "next/link";
 export default async function Login(props: { searchParams: Promise<Message> }) {
   const searchParams = await props.searchParams;
 
-  return <form className="">
+  return <form action={signInAction}>
     <div className="mb-16">
       <h1 className="text-3xl mb-2">
         welcome to leddit

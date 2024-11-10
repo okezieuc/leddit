@@ -8,6 +8,7 @@ import { ThemeProvider } from "next-themes";
 import Link from "next/link";
 import "./globals.css";
 import SubledditItem from "./subleddit-item";
+import AuthButton from "@/components/auth-button";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -60,6 +61,7 @@ export default function RootLayout({
                 </div>
                 <div className="basis-1/4 min-h-screen bg-gray-300 p-12">
                   <Link href="/" className="mb-12 text-red-900 font-bold">home</Link>
+                  <AuthButton />
                   <h2 className="font-semibold mb-8 mt-12">
                     other leddits
                   </h2>
