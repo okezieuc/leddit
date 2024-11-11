@@ -7,3 +7,14 @@ export async function getAllCommunities() {
 
   if (!error) return data;
 }
+
+export async function getCommunityInfo(id: number) {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("communities")
+    .select()
+    .eq("id", id);
+
+  if (!error) return data;
+}

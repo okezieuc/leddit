@@ -1,5 +1,7 @@
 import LinkButton from "@/components/linkbutton";
 import PostListItem from "./post-list-item";
+import { getCommunityInfo } from "@/utils/supabase/api";
+import { redirect } from "next/navigation";
 
 const samplePostData = {
     title: "this is a sample, possibly mutli line post title for a leddit post",
@@ -9,15 +11,20 @@ const samplePostData = {
 
 export default async function Page({ params }: { params: Promise<{ subleddit: string }> }) {
     const { subleddit } = await params;
+    const subledditInfo = await getCommunityInfo(parseInt(subleddit))
+
+    if (!subledditInfo || subledditInfo.length == 0) {
+        redirect("/");
+    }
 
     return <div>
         <div className="mb-16 flex">
             <div className="flex-1">
                 <h1 className="text-3xl mb-4">
-                    l/{subleddit}
+                    l/{subledditInfo[0].name_tag}
                 </h1>
                 <p>
-                    everything fisk.
+                    {subledditInfo[0].description}
                 </p>
             </div>
             <div>
