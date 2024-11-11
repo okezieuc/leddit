@@ -45,3 +45,33 @@ export async function getCommunityPosts(community_id: number) {
 
   if (!error) return data;
 }
+
+export async function getPost(post_id: number) {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("posts")
+    .select(
+      `
+          id,
+          created_at,
+          community_id (
+            id,
+            name_tag
+          ),
+          author_id (
+              id,
+              username
+          ),
+          title,
+          body
+      `
+    )
+    .eq("id", post_id);
+
+  if (error) {
+    console.log(error);
+  }
+
+  if (!error) return data;
+}

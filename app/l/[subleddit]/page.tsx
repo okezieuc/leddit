@@ -7,7 +7,6 @@ export default async function Page({ params }: { params: Promise<{ subleddit: st
     const { subleddit } = await params;
     const subledditInfo = await getCommunityInfo(parseInt(subleddit))
     const subledditPosts = await getCommunityPosts(parseInt(subleddit));
-    console.log(subledditPosts)
 
     if (!subledditInfo || subledditInfo.length == 0) {
         redirect("/");

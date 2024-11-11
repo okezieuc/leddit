@@ -1,6 +1,8 @@
 import Link from "next/link";
 import PostComment from "./post-comment";
 import PostReplyButton from "./post-reply-button";
+import { getPost } from "@/utils/supabase/api";
+import { redirect } from "next/navigation";
 
 const sampleCommentData = {
     body: "this is a sample body of a comment. it could span multiple lines or it could be short. it should ideally be able to contain links, but right now, that is not supported.",
@@ -9,23 +11,28 @@ const sampleCommentData = {
 
 export default async function Page({ params }: { params: Promise<{ subleddit: string, slug: string }> }) {
     const { subleddit, slug } = await params;
+    const data = await getPost(parseInt(slug));
+    if (!data) {
+        redirect("/");
+    }
+    const postData = data[0];
 
     return <div>
         <div className="mb-16">
             <div className="flex flex-col gap-2">
                 <Link className="text-sm" href={`/l/${subleddit}`}>
-                    l/{subleddit}
+                    l/{postData.community_id.name_tag}
                 </Link>
                 <h1 className="text-3xl">
-                    this is a sample, possibly mutli line post title for a leddit post
+                    {postData.title}
                 </h1>
                 <div className="text-sm mb-4">
-                    u/bob
+                    u/{postData.author_id.username}
                 </div>
             </div>
 
             <p className="mt-4">
-                this is a sample post body.
+                {postData.body}
             </p>
             <PostReplyButton />
         </div>
