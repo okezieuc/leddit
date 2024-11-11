@@ -9,6 +9,7 @@ import Link from "next/link";
 import "./globals.css";
 import SubledditItem from "./subleddit-item";
 import AuthButton from "@/components/auth-button";
+import { getAllCommunities } from "@/utils/supabase/api";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -20,16 +21,14 @@ export const metadata = {
   description: "The fastest way to build apps with Next.js and Supabase",
 };
 
-const sampleSubledditData = {
-  name: "college"
-}
 
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const subledditData = await getAllCommunities();
+
   return (
     <html lang="en" className={GeistSans.className} suppressHydrationWarning>
       <body className="bg-background text-foreground">
@@ -66,11 +65,9 @@ export default function RootLayout({
                     other leddits
                   </h2>
                   <div className="flex flex-col gap-2">
-                    <SubledditItem subleddit={sampleSubledditData} />
-                    <SubledditItem subleddit={sampleSubledditData} />
-                    <SubledditItem subleddit={sampleSubledditData} />
-                    <SubledditItem subleddit={sampleSubledditData} />
-                    <SubledditItem subleddit={sampleSubledditData} />
+                    {
+                      subledditData && subledditData.map((s) => <SubledditItem subleddit={s} />)
+                    }
                   </div>
                 </div>
               </div>
