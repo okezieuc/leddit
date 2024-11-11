@@ -1,17 +1,13 @@
 import LinkButton from "@/components/linkbutton";
 import PostListItem from "./post-list-item";
-import { getCommunityInfo } from "@/utils/supabase/api";
+import { getCommunityInfo, getCommunityPosts } from "@/utils/supabase/api";
 import { redirect } from "next/navigation";
-
-const samplePostData = {
-    title: "this is a sample, possibly mutli line post title for a leddit post",
-    body: "this is a sample body of a post. it could span multiple lines or it could be short. it should ideally be able to contain links, but right now, that is not supported.",
-    slug: "test",
-}
 
 export default async function Page({ params }: { params: Promise<{ subleddit: string }> }) {
     const { subleddit } = await params;
     const subledditInfo = await getCommunityInfo(parseInt(subleddit))
+    const subledditPosts = await getCommunityPosts(parseInt(subleddit));
+    console.log(subledditPosts)
 
     if (!subledditInfo || subledditInfo.length == 0) {
         redirect("/");
@@ -35,12 +31,14 @@ export default async function Page({ params }: { params: Promise<{ subleddit: st
         </div>
 
         <div className="grid grid-cols-1 divide-y divide-black">
-            <PostListItem post={samplePostData} subleddit={subleddit} />
-            <PostListItem post={samplePostData} subleddit={subleddit} />
-            <PostListItem post={samplePostData} subleddit={subleddit} />
-            <PostListItem post={samplePostData} subleddit={subleddit} />
-            <PostListItem post={samplePostData} subleddit={subleddit} />
-            <PostListItem post={samplePostData} subleddit={subleddit} />
+            {
+                subledditPosts
+                    && subledditPosts.length > 0
+                    ? subledditPosts.map((p) => <PostListItem post={p} subleddit={subleddit} />)
+                    : <div>
+                        There's nothing here :)
+                    </div>
+            }
         </div>
     </div>;
 }
