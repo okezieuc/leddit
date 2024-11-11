@@ -22,7 +22,7 @@ export default async function Page({ params }: { params: Promise<{ subleddit: st
             </div>
             <div>
                 <div>
-                    <LinkButton text="create post +" href={`/l/${subleddit}/new`} />
+                    <LinkButton text="create post +" href={`/l/new-post`} />
                 </div>
             </div>
         </div>

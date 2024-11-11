@@ -1,10 +1,9 @@
-"use client";
-
+import { createPostAction } from "@/app/communityActions";
 import Button from "@/components/button";
 import DropDownInput from "@/components/ui/dropdowninput";
 import TextArea from "@/components/ui/textarea";
 import TextInput from "@/components/ui/textinput";
-import { useState } from "react";
+import { getAllCommunities } from "@/utils/supabase/api";
 
 const sampleSubLedditOptions = [
     {
@@ -21,12 +20,22 @@ const sampleSubLedditOptions = [
     },
 ]
 
-export default function Page() {
-    const [subleddit, setSubleddit] = useState("");
-    const [title, setTitle] = useState("");
-    const [body, setBody] = useState("");
+export default async function Page() {
+    let communities = await getAllCommunities();
+    let subledditOptions;
+    if (communities) {
+        subledditOptions = communities.map((community) => {
+            const label = community.name_tag;
+            const value = community.id.toString();
 
-    return <>
+            return {
+                label, value
+            }
+
+        });
+    }
+
+    return <form action={createPostAction}>
         <h1 className="text-3xl mb-16">
             create post
         </h1>
@@ -34,22 +43,25 @@ export default function Page() {
         <div className="flex flex-col gap-12">
             <div>
                 <div className="mb-2">subleddit</div>
-                <DropDownInput options={sampleSubLedditOptions} onChange={(e) => setSubleddit(e.target.value)} />
+                <DropDownInput options={subledditOptions || []}
+                    name="community_id"
+                />
             </div>
 
             <div>
                 <div className="mb-2">title</div>
-                <TextInput onChange={(e) => setTitle(e.target.value)} />
+                <TextInput
+                    name="title" />
             </div>
 
             <div>
-                <div className="mb-2">content</div>
-                <TextArea onChange={(e) => setBody(e.target.value)} />
+                <div className="mb-2">body</div>
+                <TextArea name="body" />
             </div>
 
             <div>
                 <Button text="create" />
             </div>
         </div>
-    </>;
+    </form>;
 }

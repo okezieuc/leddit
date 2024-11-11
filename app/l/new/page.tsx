@@ -3,7 +3,7 @@ import Button from "@/components/button";
 import TextArea from "@/components/ui/textarea";
 import TextInput from "@/components/ui/textinput";
 
-export default function Page() {
+export default async function Page() {
     return <form action={createCommunityAction}>
         <h1 className="text-3xl mb-16">
             create community
@@ -18,7 +18,7 @@ export default function Page() {
                     required
                 />
             </div>
-            
+
             <div>
                 <div className="mb-2">community tag</div>
                 <TextInput

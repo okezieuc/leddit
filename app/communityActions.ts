@@ -27,3 +27,35 @@ export const createCommunityAction = async (formData: FormData) => {
     return redirect("/l/" + name_tag);
   }
 };
+
+export const createPostAction = async (formData: FormData) => {
+  const supabase = await createClient();
+
+  const community_id = formData.get("community_id") as string;
+  const title = formData.get("title") as string;
+  const body = formData.get("body") as string;
+
+  if (!title || !community_id || !body) {
+    return { error: "Community id, title, and body are required" };
+  }
+
+  const { data, error } = await supabase
+    .from("posts")
+    .insert({
+      community_id: parseInt(community_id),
+      title,
+      body,
+    })
+    .select();
+
+  if (error) {
+    console.error(error.code + " " + error.message);
+    return encodedRedirect("error", "/l/new-post", error.message);
+  } else {
+    if (!data || data.length == 0) {
+      return redirect("/");
+    } else {
+      redirect(`/l/${community_id.toString()}/${data[0].id}`);
+    }
+  }
+};
