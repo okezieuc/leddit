@@ -39,12 +39,13 @@ export default async function Page({ params }: { params: Promise<{ subleddit: st
 
 
         <div className="grid grid-cols-1 divide-y divide-black">
-            <PostComment comment={sampleCommentData} />
-            <PostComment comment={sampleCommentData} />
-            <PostComment comment={sampleCommentData} />
-            <PostComment comment={sampleCommentData} />
-            <PostComment comment={sampleCommentData} />
-            <PostComment comment={sampleCommentData} />
+            {
+                postData.comments.length > 0 ? postData.comments.map((c) => <PostComment comment={c} />) :
+                    <>
+                        No replies yet :)
+                    </>
+            }
+
         </div>
     </div>;
 }

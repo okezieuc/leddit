@@ -64,7 +64,14 @@ export async function getPost(post_id: number) {
               username
           ),
           title,
-          body
+          body,
+          comments (
+            author_id (
+                id,
+                username
+            ),
+            body
+          )
       `
     )
     .eq("id", post_id);

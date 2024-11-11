@@ -1,13 +1,16 @@
 type Comment = {
     body: string;
-    author: string;
+    author_id: {
+        id: string;
+        username: string;
+    };
 }
 
 export default function PostComment({ comment }: { comment: Comment }) {
     return <>
         <div className="py-6">
             <div>
-                u/{comment.author}
+                u/{comment.author_id.username}
             </div>
             <div>
                 {comment.body}
