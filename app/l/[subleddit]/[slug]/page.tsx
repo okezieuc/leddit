@@ -34,7 +34,7 @@ export default async function Page({ params }: { params: Promise<{ subleddit: st
             <p className="mt-4">
                 {postData.body}
             </p>
-            <PostReplyButton />
+            <PostReplyButton post_id={postData.id} route={`/l/${subleddit}/${slug}`} />
         </div>
 
 

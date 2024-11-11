@@ -59,3 +59,34 @@ export const createPostAction = async (formData: FormData) => {
     }
   }
 };
+
+export const postCommentAction = async (formData: FormData) => {
+  const supabase = await createClient();
+
+  const post_id = formData.get("post_id") as string;
+  const body = formData.get("body") as string;
+  const current_route = formData.get("current_route") as string;
+
+  if (!post_id || !body) {
+    return { error: "post_id and body are required" };
+  }
+
+  const { data, error } = await supabase
+    .from("comments")
+    .insert({
+      post_id: parseInt(post_id),
+      body,
+    })
+    .select();
+
+  if (error) {
+    console.error(error.code + " " + error.message);
+    return;
+  } else {
+    if (!data || data.length == 0) {
+      return;
+    } else {
+      redirect(current_route);
+    }
+  }
+};
