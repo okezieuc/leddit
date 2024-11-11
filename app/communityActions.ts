@@ -14,17 +14,20 @@ export const createCommunityAction = async (formData: FormData) => {
     return { error: "Title, name tag, and description are required" };
   }
 
-  const { error } = await supabase.from("communities").insert({
-    name_tag,
-    title,
-    description,
-  });
+  const { data, error } = await supabase
+    .from("communities")
+    .insert({
+      name_tag,
+      title,
+      description,
+    })
+    .select();
 
   if (error) {
     console.error(error.code + " " + error.message);
     return encodedRedirect("error", "/l/new", error.message);
   } else {
-    return redirect("/l/" + name_tag);
+    return redirect("/l/" + data[0].id);
   }
 };
 

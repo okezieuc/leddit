@@ -3,6 +3,8 @@ import PostComment from "./post-comment";
 import PostReplyButton from "./post-reply-button";
 import { getPost } from "@/utils/supabase/api";
 import { redirect } from "next/navigation";
+import { Laptop, Moon, Sun, TrashIcon } from "lucide-react";
+
 
 const sampleCommentData = {
     body: "this is a sample body of a comment. it could span multiple lines or it could be short. it should ideally be able to contain links, but right now, that is not supported.",
