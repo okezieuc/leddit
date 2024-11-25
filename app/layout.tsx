@@ -40,35 +40,56 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <main className="min-h-screen flex flex-col items-center bg-gray-50">
-            <div className="flex-1 w-full flex flex-col gap-20 items-center">
-              <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16 hidden">
-                <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-                  <div className="flex gap-5 items-center font-semibold">
-                    <Link href={"/"}>Next.js Supabase Starter</Link>
-                    <div className="flex items-center gap-2">
-                      <DeployButton />
+            <div className="flex-1 w-full flex flex-col gap-8 items-center px-8 py-8">
+              <div className="hidden">
+                <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
+                  <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
+                    <div className="flex gap-5 items-center font-semibold">
+                      <Link href={"/"}>Next.js Supabase Starter</Link>
+                      <div className="flex items-center gap-2">
+                        <DeployButton />
+                      </div>
+                    </div>
+                    {!hasEnvVars ? <EnvVarWarning /> : <HeaderAuth />}
+                  </div>
+                </nav>
+              </div>
+
+              <div className="w-full">
+                <div className="flex flex-row items-center">
+                  <div className="flex-1 font-bold text-lg">
+                    <Link href="/">
+                      leddit
+                    </Link>
+                  </div>
+                  <div className="flex flex-row gap-12 bg-amber-100 px-4 py-2 border border-black rounded-lg">
+                    <div>
+                      @username
+                    </div>
+                    <div>
+                      <AuthButton />
                     </div>
                   </div>
-                  {!hasEnvVars ? <EnvVarWarning /> : <HeaderAuth />}
-                </div>
-              </nav>
 
-              <div className="flex flex-row w-full">
-                <div className="flex-1 min-h-vh bg-gray-100">
+                </div>
+              </div>
+
+              <div className="flex gap-8 flex-row w-full">
+                <div className="flex-1 bg-gray-100">
                   <div className="flex flex-col max-w-3xl p-12 mx-auto">
                     {children}
                   </div>
                 </div>
-                <div className="basis-1/4 min-h-screen bg-gray-300 p-12">
-                  <Link href="/" className="mb-12 text-red-900 font-bold">home</Link>
-                  <AuthButton />
-                  <h2 className="font-semibold mb-8 mt-12">
-                    other leddits
-                  </h2>
-                  <div className="flex flex-col gap-2">
-                    {
-                      subledditData && subledditData.map((s) => <SubledditItem subleddit={s} />)
-                    }
+                <div className="basis-1/4">
+                  <div className="bg-yellow-400 p-12 rounded-lg border border-black">
+                    <h2 className="font-semibold mb-8">
+                      other ledditssss
+                    </h2>
+                    <div className="flex flex-col gap-4">
+                      {
+                        subledditData && subledditData.map((s) => <SubledditItem subleddit={s} />)
+                      }
+                    </div>
                   </div>
                 </div>
               </div>
