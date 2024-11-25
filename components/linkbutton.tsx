@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-export default function LinkButton({ text, href }: { text: string, href: string }) {
+export default function LinkButton({ text, href, inverted=false }: { text: string, href: string, inverted?: boolean }) {
     return <Link
-        className="bg-black text-white text-sm px-6 py-2 hover:bg-slate-800 transition"
+        className={`text-sm px-6 py-3  transition rounded-md ${inverted ? "bg-white text-blue-800 hover:bg-blue-50" : "bg-blue-800 text-white hover:bg-blue-700"}`}
         href={href}
     >
         {text}

@@ -12,7 +12,7 @@ type Post = {
 
 export default function PostListItem({ post, subleddit }: { post: Post, subleddit: string }) {
     return <>
-        <div className="py-6">
+        <div className="py-8">
             <Link className="font-bold" href={`/l/${subleddit}/${post.id}`}>
                 {post.title}
             </Link>

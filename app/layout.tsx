@@ -75,8 +75,8 @@ export default async function RootLayout({
               </div>
 
               <div className="flex gap-8 flex-row w-full">
-                <div className="flex-1 bg-gray-100">
-                  <div className="flex flex-col max-w-3xl p-12 mx-auto">
+                <div className="flex-1">
+                  <div className="flex flex-col mx-auto">
                     {children}
                   </div>
                 </div>
