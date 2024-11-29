@@ -4,6 +4,7 @@ import LinkButton from "@/components/linkbutton";
 import HeaderContainer from "@/components/header-container";
 import BodyContainer from "@/components/body-container";
 import Username from "@/components/username";
+import Link from "next/link";
 
 export default async function Index() {
   const subledditData = await getAllCommunities();
@@ -19,14 +20,19 @@ export default async function Index() {
               hi <Username />
             </div>
             <div>
-              <LinkButton text="create new +" href="l/new" inverted />
+              <LinkButton text="create post +" href="l/new-post" inverted />
             </div>
           </div>
         </HeaderContainer>
         <BodyContainer>
-          <h1 className="text-3xl flex-1 mb-8">
-            all communities
-          </h1>
+          <div className="flex">
+            <h1 className="text-3xl mb-8 flex-1">
+              all communities
+            </h1>
+            <div>
+              <Link href="l/new" className="underline hover:text-blue-800 transition">create community</Link>
+            </div>
+          </div>
           <div className="flex flex-col gap-2">
             {
               subledditData && subledditData.map((s) => <SubledditItem subleddit={s} />)
