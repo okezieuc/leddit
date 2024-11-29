@@ -11,11 +11,9 @@ export default async function Index() {
 
   return (
     <>
-
-
       <div>
         <HeaderContainer>
-          <div className="flex w-full items-center">
+          <div className="flex w-full md:items-center gap-8 md:gap-0 flex-col md:flex-row">
             <div className="text-3xl flex-1">
               hi <Username />
             </div>
@@ -25,8 +23,8 @@ export default async function Index() {
           </div>
         </HeaderContainer>
         <BodyContainer>
-          <div className="flex">
-            <h1 className="text-3xl mb-8 flex-1">
+          <div className="flex gap-4 md:gap-0 flex-col md:flex-row mb-8">
+            <h1 className="text-3xl flex-1">
               all communities
             </h1>
             <div>

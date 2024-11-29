@@ -64,9 +64,9 @@ export default async function RootLayout({
                     </Link>
                   </div>
                   <div className="flex flex-row gap-12 bg-amber-100 px-4 py-2 border border-black rounded-lg">
-                    
-                      
-                      <Username />
+
+
+                    <Username />
                     <div>
                       <AuthButton />
                     </div>
@@ -81,10 +81,10 @@ export default async function RootLayout({
                     {children}
                   </div>
                 </div>
-                <div className="basis-1/4">
+                <div className="hidden basis-1/4 md:block">
                   <div className="bg-yellow-400 p-12 rounded-lg border border-black">
                     <h2 className="font-semibold mb-8">
-                      other ledditssss
+                      other leddits
                     </h2>
                     <div className="flex flex-col gap-4">
                       {
