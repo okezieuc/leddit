@@ -6,22 +6,13 @@ import TextArea from "@/components/ui/textarea";
 import TextInput from "@/components/ui/textinput";
 import { getAllCommunities } from "@/utils/supabase/api";
 
-const sampleSubLedditOptions = [
-    {
-        label: "fisk",
-        value: "fisk",
-    },
-    {
-        label: "leddit",
-        value: "leddit",
-    },
-    {
-        label: "college",
-        value: "college",
-    },
-]
+export default async function Page({
+    searchParams,
+}: {
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+    const { community = 1, } = await searchParams;
 
-export default async function Page() {
     let communities = await getAllCommunities();
     let subledditOptions;
     if (communities) {
@@ -48,6 +39,7 @@ export default async function Page() {
                 <div className="mb-2">subleddit</div>
                 <DropDownInput options={subledditOptions || []}
                     name="community_id"
+                    defaultValue={community}
                 />
             </div>
 

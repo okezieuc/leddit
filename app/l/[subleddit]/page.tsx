@@ -26,7 +26,7 @@ export default async function Page({ params }: { params: Promise<{ subleddit: st
             </div>
             <div>
                 <div>
-                    <LinkButton inverted text="create post +" href={`/l/new-post`} />
+                    <LinkButton inverted text="create post +" href={`/l/new-post?community=${subleddit}`} />
                 </div>
             </div>
         </HeaderContainer>
