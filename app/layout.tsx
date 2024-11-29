@@ -10,6 +10,7 @@ import "./globals.css";
 import SubledditItem from "./subleddit-item";
 import AuthButton from "@/components/auth-button";
 import { getAllCommunities } from "@/utils/supabase/api";
+import Username from "@/components/username";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -63,9 +64,9 @@ export default async function RootLayout({
                     </Link>
                   </div>
                   <div className="flex flex-row gap-12 bg-amber-100 px-4 py-2 border border-black rounded-lg">
-                    <div>
-                      @username
-                    </div>
+                    
+                      
+                      <Username />
                     <div>
                       <AuthButton />
                     </div>

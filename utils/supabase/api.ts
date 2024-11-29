@@ -82,3 +82,15 @@ export async function getPost(post_id: number) {
 
   if (!error) return data;
 }
+
+export async function getUsername(user_id: string) {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("users")
+    .select("username")
+    .eq("id", user_id);
+
+  if (error) return "";
+  else return data[0].username;
+}
