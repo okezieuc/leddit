@@ -39,7 +39,7 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="min-h-screen flex flex-col items-center bg-gray-50">
+          <main className="min-h-screen flex flex-col items-center bg-gray-50asa max-w-7xl mx-auto">
             <div className="flex-1 w-full flex flex-col gap-8 items-center px-8 py-8">
               <div className="hidden">
                 <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">

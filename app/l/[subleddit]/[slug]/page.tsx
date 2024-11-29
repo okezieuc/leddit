@@ -4,6 +4,8 @@ import PostReplyButton from "./post-reply-button";
 import { getPost } from "@/utils/supabase/api";
 import { redirect } from "next/navigation";
 import { Laptop, Moon, Sun, TrashIcon } from "lucide-react";
+import HeaderContainer from "@/components/header-container";
+import BodyContainer from "@/components/body-container";
 
 
 const sampleCommentData = {
@@ -21,33 +23,38 @@ export default async function Page({ params }: { params: Promise<{ subleddit: st
 
     return <div>
         <div className="mb-16">
-            <div className="flex flex-col gap-2">
-                <Link className="text-sm" href={`/l/${subleddit}`}>
-                    l/{postData.community_id.name_tag}
-                </Link>
-                <h1 className="text-3xl">
-                    {postData.title}
-                </h1>
-                <div className="text-sm mb-4">
-                    u/{postData.author_id.username}
+            <HeaderContainer>
+                <div className="flex flex-col gap-2">
+                    <Link className="text-sm" href={`/l/${subleddit}`}>
+                        l/{postData.community_id.name_tag}
+                    </Link>
+                    <h1 className="text-3xl">
+                        {postData.title}
+                    </h1>
+                    <div className="text-sm mb-4">
+                        u/{postData.author_id.username}
+                    </div>
                 </div>
+            </HeaderContainer>
+
+            <BodyContainer>
+                <p className="mt-4">
+                    {postData.body}
+                </p>
+                <PostReplyButton post_id={postData.id} route={`/l/${subleddit}/${slug}`} />
+            </BodyContainer>
+        </div>
+
+        <BodyContainer>
+            <div className="grid grid-cols-1 divide-y divide-black">
+                {
+                    postData.comments.length > 0 ? postData.comments.map((c) => <PostComment comment={c} />) :
+                        <>
+                            No replies yet :)
+                        </>
+                }
+
             </div>
-
-            <p className="mt-4">
-                {postData.body}
-            </p>
-            <PostReplyButton post_id={postData.id} route={`/l/${subleddit}/${slug}`} />
-        </div>
-
-
-        <div className="grid grid-cols-1 divide-y divide-black">
-            {
-                postData.comments.length > 0 ? postData.comments.map((c) => <PostComment comment={c} />) :
-                    <>
-                        No replies yet :)
-                    </>
-            }
-
-        </div>
+        </BodyContainer>
     </div>;
 }

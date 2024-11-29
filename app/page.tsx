@@ -1,6 +1,8 @@
 import { getAllCommunities } from "@/utils/supabase/api";
 import SubledditItem from "./subleddit-item";
 import LinkButton from "@/components/linkbutton";
+import HeaderContainer from "@/components/header-container";
+import BodyContainer from "@/components/body-container";
 
 const sampleSubledditData = {
   name: "college"
@@ -11,26 +13,29 @@ export default async function Index() {
 
   return (
     <>
-      <div className="mb-2">
-        <div className="text-sm">
-          hi @bob
-        </div>
-      </div>
+
 
       <div>
-        <div className="flex">
+        <HeaderContainer>
+          <div className="flex w-full items-center">
+            <div className="text-3xl flex-1">
+              hi @bob
+            </div>
+            <div>
+              <LinkButton text="create new +" href="l/new" inverted />
+            </div>
+          </div>
+        </HeaderContainer>
+        <BodyContainer>
           <h1 className="text-3xl flex-1 mb-8">
             my communities
           </h1>
-          <div>
-            <LinkButton text="create new +" href="l/new" />
+          <div className="flex flex-col gap-2">
+            {
+              subledditData && subledditData.map((s) => <SubledditItem subleddit={s} />)
+            }
           </div>
-        </div>
-        <div className="flex flex-col gap-2">
-          {
-            subledditData && subledditData.map((s) => <SubledditItem subleddit={s} />)
-          }
-        </div>
+        </BodyContainer>
       </div>
       <div className="hidden">
         <div className="mt-24">

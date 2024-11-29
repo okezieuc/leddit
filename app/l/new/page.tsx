@@ -1,13 +1,16 @@
 import { createCommunityAction } from "@/app/communityActions";
 import Button from "@/components/button";
+import HeaderContainer from "@/components/header-container";
 import TextArea from "@/components/ui/textarea";
 import TextInput from "@/components/ui/textinput";
 
 export default async function Page() {
     return <form action={createCommunityAction}>
-        <h1 className="text-3xl mb-16">
-            create community
-        </h1>
+        <HeaderContainer>
+            <h1 className="text-3xl">
+                create community
+            </h1>
+        </HeaderContainer>
 
         <div className="flex flex-col gap-12">
             <div>
