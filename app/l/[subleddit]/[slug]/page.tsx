@@ -20,6 +20,8 @@ export default async function Page({ params }: { params: Promise<{ subleddit: st
         redirect("/");
     }
     const postData = data[0];
+    postData.comments.sort();
+    postData.comments.reverse();
 
     return <div>
         <div className="mb-16">
@@ -48,7 +50,7 @@ export default async function Page({ params }: { params: Promise<{ subleddit: st
         <BodyContainer>
             <div className="grid grid-cols-1 divide-y divide-black">
                 {
-                    postData.comments.length > 0 ? postData.comments.map((c) => <PostComment comment={c} />) :
+                    postData.comments.length > 0 ? postData.comments.sort().map((c) => <PostComment comment={c} />) :
                         <>
                             No replies yet :)
                         </>

@@ -37,7 +37,8 @@ export async function getCommunityPosts(community_id: number) {
         body
     `
     )
-    .eq("community_id", community_id);
+    .eq("community_id", community_id)
+    .order('created_at', { ascending: false });
 
   if (error) {
     console.log(error);
@@ -70,7 +71,8 @@ export async function getPost(post_id: number) {
                 id,
                 username
             ),
-            body
+            body,
+            created_at
           )
       `
     )
