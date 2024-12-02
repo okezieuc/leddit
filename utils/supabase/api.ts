@@ -29,7 +29,7 @@ export async function getCommunityPosts(community_id: number) {
         id,
         created_at,
         community_id,
-        author_id (
+        author_id:users (
             id,
             username
         ),
@@ -56,18 +56,18 @@ export async function getPost(post_id: number) {
       `
           id,
           created_at,
-          community_id (
+          community_id:communities (
             id,
             name_tag
           ),
-          author_id (
+          author_id:users (
               id,
               username
           ),
           title,
           body,
-          comments (
-            author_id (
+          comments:comments (
+            author_id:users (
                 id,
                 username
             ),

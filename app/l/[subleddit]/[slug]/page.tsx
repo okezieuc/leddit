@@ -28,13 +28,13 @@ export default async function Page({ params }: { params: Promise<{ subleddit: st
             <HeaderContainer>
                 <div className="flex flex-col gap-2">
                     <Link className="text-sm" href={`/l/${subleddit}`}>
-                        l/{postData.community_id.name_tag}
+                        l/{postData.community_id!.name_tag}
                     </Link>
                     <h1 className="text-3xl">
                         {postData.title}
                     </h1>
                     <div className="text-sm mb-4">
-                        u/{postData.author_id.username}
+                        u/{postData.author_id!.username}
                     </div>
                 </div>
             </HeaderContainer>

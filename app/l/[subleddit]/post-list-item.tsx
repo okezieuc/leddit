@@ -6,7 +6,7 @@ type Post = {
     author_id: {
         id: string;
         username: string;
-    };
+    } | null;
     id: number;
 }
 
